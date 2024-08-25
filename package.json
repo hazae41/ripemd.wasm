@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@hazae41/ripemd.wasm",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "WebAssembly port of RIPEMD",
   "homepage": "https://github.com/hazae41/ripemd.wasm",
   "repository": "github:hazae41/ripemd.wasm",

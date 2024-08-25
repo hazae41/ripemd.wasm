@@ -8,7 +8,7 @@ function equals(a: Uint8Array, b: Uint8Array) {
   return ba.equals(bb)
 }
 
-test("SHA-1", async () => {
+test("hash", async () => {
   await initBundled()
 
   const hello = new TextEncoder().encode("Hello World")

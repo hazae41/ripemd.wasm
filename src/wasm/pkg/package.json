@@ -1,0 +1,24 @@
+{
+  "name": "ripemd_wasm",
+  "type": "module",
+  "collaborators": [
+    "hazae41 <4405263+hazae41@users.noreply.github.com>"
+  ],
+  "description": "WebAssembly port of RIPEMD",
+  "version": "1.0.0",
+  "license": "Unlicense",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hazae41/ripemd.wasm"
+  },
+  "files": [
+    "ripemd_wasm_bg.wasm",
+    "ripemd_wasm.js",
+    "ripemd_wasm.d.ts"
+  ],
+  "main": "ripemd_wasm.js",
+  "types": "ripemd_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

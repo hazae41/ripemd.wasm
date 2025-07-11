@@ -22,12 +22,11 @@ function _assertClass(instance, klass) {
     if (!(instance instanceof klass)) {
         throw new Error(`expected instance of ${klass.name}`);
     }
-    return instance.ptr;
 }
 /**
-* @param {Memory} data
-* @returns {Memory}
-*/
+ * @param {Memory} data
+ * @returns {Memory}
+ */
 export function ripemd160(data) {
     _assertClass(data, Memory);
     const ret = wasm.ripemd160(data.__wbg_ptr);
@@ -46,8 +45,7 @@ function passArray8ToWasm0(arg, malloc) {
 const MemoryFinalization = true
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_memory_free(ptr >>> 0, 1));
-/**
-*/
+
 export class Memory {
 
     static __wrap(ptr) {
@@ -121,8 +119,7 @@ export class Memory {
 const Ripemd160HasherFinalization = true
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_ripemd160hasher_free(ptr >>> 0, 1));
-/**
-*/
+
 export class Ripemd160Hasher {
 
     static __wrap(ptr) {
@@ -144,8 +141,6 @@ export class Ripemd160Hasher {
         const ptr = this.__destroy_into_raw();
         wasm.__wbg_ripemd160hasher_free(ptr, 0);
     }
-    /**
-    */
     constructor() {
         const ret = wasm.ripemd160hasher_new();
         this.__wbg_ptr = ret >>> 0;
@@ -153,22 +148,22 @@ export class Ripemd160Hasher {
         return this;
     }
     /**
-    * @returns {Ripemd160Hasher}
-    */
+     * @returns {Ripemd160Hasher}
+     */
     clone() {
         const ret = wasm.ripemd160hasher_clone(this.__wbg_ptr);
         return Ripemd160Hasher.__wrap(ret);
     }
     /**
-    * @param {Memory} data
-    */
+     * @param {Memory} data
+     */
     update(data) {
         _assertClass(data, Memory);
         wasm.ripemd160hasher_update(this.__wbg_ptr, data.__wbg_ptr);
     }
     /**
-    * @returns {Memory}
-    */
+     * @returns {Memory}
+     */
     finalize() {
         const ret = wasm.ripemd160hasher_finalize(this.__wbg_ptr);
         return Memory.__wrap(ret);
@@ -183,7 +178,7 @@ async function __wbg_load(module, imports) {
 
             } catch (e) {
                 if (module.headers.get('Content-Type') != 'application/wasm') {
-                    console.warn("`WebAssembly.instantiateStreaming` failed because your server does not serve wasm with `application/wasm` MIME type. Falling back to `WebAssembly.instantiate` which is slower. Original error:\n", e);
+                    console.warn("`WebAssembly.instantiateStreaming` failed because your server does not serve Wasm with `application/wasm` MIME type. Falling back to `WebAssembly.instantiate` which is slower. Original error:\n", e);
 
                 } else {
                     throw e;
@@ -209,6 +204,16 @@ async function __wbg_load(module, imports) {
 function __wbg_get_imports() {
     const imports = {};
     imports.wbg = {};
+    imports.wbg.__wbindgen_init_externref_table = function() {
+        const table = wasm.__wbindgen_export_0;
+        const offset = table.grow(4);
+        table.set(0, undefined);
+        table.set(offset + 0, undefined);
+        table.set(offset + 1, null);
+        table.set(offset + 2, true);
+        table.set(offset + 3, false);
+        ;
+    };
     imports.wbg.__wbindgen_throw = function(arg0, arg1) {
         throw new Error(getStringFromWasm0(arg0, arg1));
     };
@@ -226,7 +231,7 @@ function __wbg_finalize_init(instance, module) {
     cachedUint8ArrayMemory0 = null;
 
 
-
+    wasm.__wbindgen_start();
     return wasm;
 }
 
@@ -234,10 +239,13 @@ function initSync(module) {
     if (wasm !== undefined) return wasm;
 
 
-    if (typeof module !== 'undefined' && Object.getPrototypeOf(module) === Object.prototype)
-    ({module} = module)
-    else
-    console.warn('using deprecated parameters for `initSync()`; pass a single object instead')
+    if (typeof module !== 'undefined') {
+        if (Object.getPrototypeOf(module) === Object.prototype) {
+            ({module} = module)
+        } else {
+            console.warn('using deprecated parameters for `initSync()`; pass a single object instead')
+        }
+    }
 
     const imports = __wbg_get_imports();
 
@@ -256,10 +264,13 @@ async function __wbg_init(module_or_path) {
     if (wasm !== undefined) return wasm;
 
 
-    if (typeof module_or_path !== 'undefined' && Object.getPrototypeOf(module_or_path) === Object.prototype)
-    ({module_or_path} = module_or_path)
-    else
-    console.warn('using deprecated parameters for the initialization function; pass a single object instead')
+    if (typeof module_or_path !== 'undefined') {
+        if (Object.getPrototypeOf(module_or_path) === Object.prototype) {
+            ({module_or_path} = module_or_path)
+        } else {
+            console.warn('using deprecated parameters for the initialization function; pass a single object instead')
+        }
+    }
 
     if (typeof module_or_path === 'undefined') {
         throw new Error();

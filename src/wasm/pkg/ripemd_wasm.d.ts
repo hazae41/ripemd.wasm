@@ -1,12 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/**
-* @param {Memory} data
-* @returns {Memory}
-*/
 export function ripemd160(data: Memory): Memory;
-/**
-*/
 export class Memory {
   [Symbol.dispose](): void;
 /**
@@ -26,24 +20,11 @@ export class Memory {
 */
   get bytes(): Uint8Array;
 }
-/**
-*/
 export class Ripemd160Hasher {
   [Symbol.dispose](): void;
-/**
-*/
   constructor();
-/**
-* @returns {Ripemd160Hasher}
-*/
   clone(): Ripemd160Hasher;
-/**
-* @param {Memory} data
-*/
   update(data: Memory): void;
-/**
-* @returns {Memory}
-*/
   finalize(): Memory;
 }
 
@@ -61,7 +42,9 @@ export interface InitOutput {
   readonly memory_new: (a: number, b: number) => number;
   readonly memory_ptr: (a: number) => number;
   readonly memory_len: (a: number) => number;
+  readonly __wbindgen_export_0: WebAssembly.Table;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
+  readonly __wbindgen_start: () => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;
